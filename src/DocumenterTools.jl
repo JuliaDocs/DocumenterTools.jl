@@ -1,4 +1,5 @@
 module DocumenterTools
+
 using DocStringExtensions
 
 export Travis
@@ -35,26 +36,26 @@ It defaults to `<package directory>/docs`. The directory must not exist.
 
 # Examples
 
-```jlcon
-julia> using Documenter
+```julia-repl
+julia> using DocumenterTools
 
-julia> Documenter.generate("MyPackageName")
+julia> using MyPackage
+
+julia> Documenter.generate(MyPackage)
 [ ... output ... ]
 ```
 """
-function generate(pkgname::AbstractString; dir=nothing)
+function generate(pkg::Module; dir=nothing)
     # TODO:
     #   - set up deployment to `gh-pages`
     #   - fetch url and username automatically (e.g from git remote.origin.url)
 
-    # Check the validity of the package name
-    if length(pkgname) == 0
-        error("Package name can not be an empty string.")
-    end
+    # Assume the package name
+    pkgname = string(pkg) * ".jl"
     # Determine the root directory where we wish to generate the docs and
     # check that it is a valid directory.
     docroot = if dir === nothing
-        pkgdir = Pkg.dir(pkgname)
+        pkgdir = dirname(dirname(pathof(pkg)))
         if !isdir(pkgdir)
             error("Unable to find package $(pkgname).jl at $(pkgdir).")
         end
