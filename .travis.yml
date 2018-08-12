@@ -13,4 +13,4 @@ notifications:
   email: false
 
 after_success:
-  - julia test/coverage.jl
+  - julia --project=test/coverage test/coverage/coverage.jl
