@@ -19,7 +19,12 @@ import Random: randstring
 
     # TODO: these tests should be reviewed. DocumenterTools.generate() does not really
     # support Pkg3 / Julia 0.7 at the moment.
-    @test_throws ErrorException DocumenterTools.generate(DocumenterTools)
+    let docsdir = joinpath(@__DIR__, "..", "docs")
+        @test !ispath(docsdir)
+        mkdir(docsdir)
+        @test_throws ErrorException DocumenterTools.generate(DocumenterTools)
+        rm(docsdir)
+    end
 end
 
 end
