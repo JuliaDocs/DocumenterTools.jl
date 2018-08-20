@@ -1,30 +1,52 @@
 module GenerateTests
 
-using Test
 using DocumenterTools
-import Random: randstring
+using Test
+using Pkg
+using Example
 
 @testset "Generate" begin
-    mktempdir() do root
-        let path = joinpath(root, "docs")
-            DocumenterTools.generate(DocumenterTools, dir = path)
-            @test isdir(path)
-            @test isfile(joinpath(path, "mkdocs.yml"))
-            @test isfile(joinpath(path, ".gitignore"))
-            @test isfile(joinpath(path, "make.jl"))
-            @test isdir(joinpath(path, "src"))
-            @test isfile(joinpath(path, "src", "index.md"))
-        end
+    function check_docdir(path)
+        @test isdir(path)
+        @test isfile(joinpath(path, "mkdocs.yml"))
+        @test isfile(joinpath(path, ".gitignore"))
+        @test isfile(joinpath(path, "make.jl"))
+        @test isdir(joinpath(path, "src"))
+        @test isfile(joinpath(path, "src", "index.md"))
     end
+    mktempdir() do tmp; cd(tmp) do
+        # generate from module argument
+        Pkg.generate("Pkg1")
+        Pkg.develop(PackageSpec(path = "Pkg1"))
+        @eval using Pkg1
+        DocumenterTools.generate(Pkg1)
+        check_docdir(joinpath("Pkg1", "docs"))
+        @test_throws ArgumentError DocumenterTools.generate(Pkg1)
+        Pkg.rm(PackageSpec("Pkg1"))
 
-    # TODO: these tests should be reviewed. DocumenterTools.generate() does not really
-    # support Pkg3 / Julia 0.7 at the moment.
-    let docsdir = joinpath(@__DIR__, "..", "docs")
-        @test !ispath(docsdir)
-        mkdir(docsdir)
-        @test_throws ErrorException DocumenterTools.generate(DocumenterTools)
-        rm(docsdir)
-    end
+        # generate from path
+        Pkg.generate("Pkg2")
+        DocumenterTools.generate(joinpath("Pkg2", "docs"))
+        check_docdir(joinpath("Pkg2", "docs"))
+        @test_throws ArgumentError DocumenterTools.generate(joinpath("Pkg2", "docs"))
+
+        # generate where name can't be determined
+        mkdir("Pkg3")
+        @test_throws ArgumentError DocumenterTools.generate(joinpath("Pkg3", "docs"))
+        mkdir(joinpath("Pkg3", "src"))
+        @test_throws ArgumentError DocumenterTools.generate(joinpath("Pkg3", "docs"))
+        write(joinpath("Pkg3", "src", "Pkg3.jl"), "module Pkg3\nend\n")
+        write(joinpath("Pkg3", "src", "Pkg4.jl"), "module Pkg4\nend\n")
+        @test_throws ArgumentError DocumenterTools.generate(joinpath("Pkg3", "docs"))
+        DocumenterTools.generate(joinpath("Pkg3", "docs"); name = "Pkg3")
+        check_docdir(joinpath("Pkg3", "docs"))
+
+        # throw for a package that is installed and not deved
+        @test_throws ArgumentError DocumenterTools.generate(Example)
+
+        # throw for a submodule
+        @test_throws ArgumentError DocumenterTools.generate(Broadcast)
+    end; end
 end
 
 end
