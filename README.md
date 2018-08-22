@@ -10,11 +10,11 @@ documentation][documenter-docs].
 
 ## Installation
 
-The package can be added using the Julia package manager. From the Julia REPL, type `]` to
-enter the Pkg REPL mode and run
+The package is currently unregistered and must be added via URL in the package manager.
+From the Julia REPL, type `]` to enter the Pkg REPL mode and run
 
 ```
-pkg> add DocumenterTools
+pkg> add https://github.com/JuliaDocs/DocumenterTools.jl.git
 ```
 
 [documenter]: https://github.com/JuliaDocs/Documenter.jl
