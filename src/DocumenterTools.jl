@@ -21,6 +21,7 @@ but can be given with the `name` keyword argument.
 src/index.md
 make.jl
 mkdocs.yml
+Project.toml
 ```
 
 # Arguments
@@ -88,6 +89,9 @@ function generate(path::AbstractString; name::Union{AbstractString,Nothing}=noth
         end
         Generator.savefile(path, "mkdocs.yml") do io
             write(io, Generator.mkdocs(name))
+        end
+        Generator.savefile(path, "Project.toml") do io
+            write(io, Generator.project())
         end
 
         # Create the default documentation source files
