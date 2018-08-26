@@ -10,6 +10,7 @@ using Example
         @test isdir(path)
         @test isfile(joinpath(path, "mkdocs.yml"))
         @test isfile(joinpath(path, ".gitignore"))
+        @test isfile(joinpath(path, "Project.toml"))
         @test isfile(joinpath(path, "make.jl"))
         @test isdir(joinpath(path, "src"))
         @test isfile(joinpath(path, "src", "index.md"))

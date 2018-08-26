@@ -57,6 +57,18 @@ function gitignore()
     """
 end
 
+"""
+$(SIGNATURES)
+
+Contents of the default `Project.toml` file.
+"""
+function project()
+    """
+    [deps]
+    Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+    """
+end
+
 mkdocs_default(name, value, default) = value == nothing ? "#$name$default" : "$name$value"
 
 """
