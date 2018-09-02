@@ -155,8 +155,8 @@ function package_devpath(pkg::Module)
                 "`Pkg.develop(\"$(name)\")` from the Julia REPL, and try again.")))
         end
     end
-    # We assume that the path to source file of pkg is ../Package.jl/src/Package.jl,
-    # but we return simply the top level directory of the package (i.e. ../Package.jl)
+    # We assume that the path to source file of pkg is ../Package/src/Package.jl, but we
+    # return simply the top level directory of the package (i.e. ../Package)
     return normpath(joinpath(path, "..", ".."))
 end
 

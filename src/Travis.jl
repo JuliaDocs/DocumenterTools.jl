@@ -106,7 +106,7 @@ This method requires the following command lines programs to be installed:
 !!! note
     The package must be in development mode. Make sure you run
     `pkg> develop pkg` from the Pkg REPL, or `Pkg.develop(\"pkg\")`
-    before generating docs.
+    before generating the SSH keys.
 
 # Examples
 
