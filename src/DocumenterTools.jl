@@ -4,9 +4,6 @@ using DocStringExtensions
 
 export Travis
 
-include("Travis.jl")
-include("Generator.jl")
-
 """
     DocumenterTools.generate(path::String; name = nothing)
 
@@ -127,10 +124,24 @@ julia> DocumenterTools.generate(MyPackage)
 ```
 """
 function generate(pkg::Module; dir = "docs")
-    pkg == parentmodule(pkg) || throw(ArgumentError("can't add documentation to a submodule."))
+    package_path = package_devpath(pkg)
     name = String(nameof(pkg))
+    return generate(joinpath(package_path, dir); name = name)
+end
+
+
+"""
+$(SIGNATURES)
+
+Returns the path to the top level directory of a devved out package source tree. The package
+is identified by its top level module `pkg`.
+"""
+function package_devpath(pkg::Module)
+    pkg == parentmodule(pkg) || throw(ArgumentError("$(pkg) is a submodule. Use the package top-level module."))
     path = pathof(pkg)
     path === nothing && throw(ArgumentError("could not find path to $(pkg)."))
+    name = String(nameof(pkg))
+
     # check that pkg is not originating from a standard installation directory
     # since those are supposed to be immutable.
     for depot in DEPOT_PATH
@@ -144,8 +155,12 @@ function generate(pkg::Module; dir = "docs")
                 "`Pkg.develop(\"$(name)\")` from the Julia REPL, and try again.")))
         end
     end
-    return generate(normpath(joinpath(path, "..", "..", dir)); name = name)
+    # We assume that the path to source file of pkg is ../Package/src/Package.jl, but we
+    # return simply the top level directory of the package (i.e. ../Package)
+    return normpath(joinpath(path, "..", ".."))
 end
 
+include("Travis.jl")
+include("Generator.jl")
 
 end # module
