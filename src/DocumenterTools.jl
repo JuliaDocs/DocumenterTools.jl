@@ -5,7 +5,7 @@ using DocStringExtensions
 export Travis
 
 """
-    DocumenterTools.generate(path::String; name = nothing)
+    DocumenterTools.generate(path::String; name = nothing, format = :html)
 
 Create a documentation stub in `path`, which is usually a sub folder in
 the package root. The name of the package is determined automatically,
@@ -30,6 +30,10 @@ Project.toml
 **`name`** is the name of the package (without `.jl`). If `name` is not given
 `generate` tries to detect it automatically.
 
+**`format`** can be either `:html` (default), `:markdown` or `:pdf` corresponding
+to the `format` keyword to Documenter's `makedocs` function, see
+[Documenter's manual](https://juliadocs.github.io/Documenter.jl/latest/man/other-formats/).
+
 # Examples
 ```julia-repl
 julia> using DocumenterTools
@@ -38,10 +42,15 @@ julia> Documenter.generate("path/to/MyPackage/docs")
 [ ... output ... ]
 ```
 """
-function generate(path::AbstractString; name::Union{AbstractString,Nothing}=nothing)
+function generate(path::AbstractString; name::Union{AbstractString,Nothing}=nothing,
+                  format = :html)
     # TODO:
     #   - set up deployment to `gh-pages`
     #   - fetch url and username automatically (e.g from git remote.origin.url)
+
+    if !(format in (:html, :markdown, :pdf))
+        throw(ArgumentError("format `$(repr(format))` not supported."))
+    end
 
     path = abspath(path)
     if isdir(path)
@@ -82,13 +91,15 @@ function generate(path::AbstractString; name::Union{AbstractString,Nothing}=noth
             write(io, Generator.gitignore())
         end
         Generator.savefile(path, "make.jl") do io
-            write(io, Generator.make(name))
+            write(io, Generator.make(name; format = format))
         end
-        Generator.savefile(path, "mkdocs.yml") do io
-            write(io, Generator.mkdocs(name))
+        if format === :markdown
+            Generator.savefile(path, "mkdocs.yml") do io
+                write(io, Generator.mkdocs(name))
+            end
         end
         Generator.savefile(path, "Project.toml") do io
-            write(io, Generator.project())
+            write(io, Generator.project(; format = format))
         end
 
         # Create the default documentation source files
@@ -103,7 +114,7 @@ function generate(path::AbstractString; name::Union{AbstractString,Nothing}=noth
 end
 
 """
-    DocumenterTools.generate(pkg::Module; dir = "docs")
+    DocumenterTools.generate(pkg::Module; dir = "docs", format = :html)
 
 Same as `generate(path::String)` but the `path` and name is determined
 automatically from the module.
@@ -123,10 +134,10 @@ julia> DocumenterTools.generate(MyPackage)
 [ ... output ... ]
 ```
 """
-function generate(pkg::Module; dir = "docs")
+function generate(pkg::Module; dir = "docs", format = :html)
     package_path = package_devpath(pkg)
     name = String(nameof(pkg))
-    return generate(joinpath(package_path, dir); name = name)
+    return generate(joinpath(package_path, dir); name = name, format = format)
 end
 
 
