@@ -27,12 +27,15 @@ $(SIGNATURES)
 
 Contents of the default `make.jl` file.
 """
-function make(pkgname)
+function make(pkgname; format = :html)
+    fmtpkg = format === :markdown ? ", DocumenterMarkdown" :
+             format === :pdf      ? ", DocumenterLaTeX" : ""
     """
-    using Documenter
+    using Documenter$(fmtpkg)
     using $(pkgname)
 
     makedocs(
+        format = $(repr(format))
         modules = [$(pkgname)]
     )
 
@@ -62,11 +65,20 @@ $(SIGNATURES)
 
 Contents of the default `Project.toml` file.
 """
-function project()
-    """
-    [deps]
-    Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-    """
+function project(;format = :html)
+    deps = Dict("Documenter" => "e30172f5-a6a5-5a46-863b-614d45cd2de4")
+    if format === :markdown
+        deps["DocumenterMarkdown"] = "997ab1e6-3595-5248-9280-8efb232c3433"
+    elseif format === :pdf
+        deps["DocumenterLaTeX"] = "cd674d7a-5f81-5cf3-af33-235ef1834b99"
+    end
+    io = IOBuffer()
+    print(io, "[deps]\n")
+    for dep in deps
+        print(io, dep.first, " = \"", dep.second, "\"\n")
+    end
+
+    return String(take!(io))
 end
 
 mkdocs_default(name, value, default) = value == nothing ? "#$name$default" : "$name$value"

@@ -6,9 +6,9 @@ using Pkg
 using Example
 
 @testset "Generate" begin
-    function check_docdir(path)
+    function check_docdir(path; format)
         @test isdir(path)
-        @test isfile(joinpath(path, "mkdocs.yml"))
+        @test isfile(joinpath(path, "mkdocs.yml")) == (format === :markdown)
         @test isfile(joinpath(path, ".gitignore"))
         @test isfile(joinpath(path, "Project.toml"))
         @test isfile(joinpath(path, "make.jl"))
@@ -20,15 +20,15 @@ using Example
         Pkg.generate("Pkg1")
         Pkg.develop(PackageSpec(path = "Pkg1"))
         @eval using Pkg1
-        DocumenterTools.generate(Pkg1)
-        check_docdir(joinpath("Pkg1", "docs"))
+        DocumenterTools.generate(Pkg1; format = :html)
+        check_docdir(joinpath("Pkg1", "docs"); format = :html)
         @test_throws ArgumentError DocumenterTools.generate(Pkg1)
         Pkg.rm(PackageSpec("Pkg1"))
 
         # generate from path
         Pkg.generate("Pkg2")
-        DocumenterTools.generate(joinpath("Pkg2", "docs"))
-        check_docdir(joinpath("Pkg2", "docs"))
+        DocumenterTools.generate(joinpath("Pkg2", "docs"); format = :markdown)
+        check_docdir(joinpath("Pkg2", "docs"); format = :markdown)
         @test_throws ArgumentError DocumenterTools.generate(joinpath("Pkg2", "docs"))
 
         # generate where name can't be determined
@@ -39,8 +39,8 @@ using Example
         write(joinpath("Pkg3", "src", "Pkg3.jl"), "module Pkg3\nend\n")
         write(joinpath("Pkg3", "src", "Pkg4.jl"), "module Pkg4\nend\n")
         @test_throws ArgumentError DocumenterTools.generate(joinpath("Pkg3", "docs"))
-        DocumenterTools.generate(joinpath("Pkg3", "docs"); name = "Pkg3")
-        check_docdir(joinpath("Pkg3", "docs"))
+        DocumenterTools.generate(joinpath("Pkg3", "docs"); name = "Pkg3", format = :pdf)
+        check_docdir(joinpath("Pkg3", "docs"), format = :pdf)
 
         # throw for a package that is installed and not deved
         @test_throws ArgumentError DocumenterTools.generate(Example)

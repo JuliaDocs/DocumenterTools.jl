@@ -1,6 +1,7 @@
 DocumenterTools.jl is licensed under the MIT "Expat" License:
 
-> Copyright (c) 2018: Morten Piibeleht, Michael Hatherly and others.
+> Copyright (c) 2016: Michael Hatherly.
+> Copyright (c) 2018: Fredrik Ekre, Morten Piibeleht, and other contributors.
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
