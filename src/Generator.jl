@@ -30,12 +30,13 @@ Contents of the default `make.jl` file.
 function make(pkgname; format = :html)
     fmtpkg = format === :markdown ? ", DocumenterMarkdown" :
              format === :pdf      ? ", DocumenterLaTeX" : ""
+    sitename = format !== :markdown ? "\n    sitename = \"$(pkgname)\"," : ""
     """
     using Documenter$(fmtpkg)
     using $(pkgname)
 
-    makedocs(
-        format = $(repr(format))
+    makedocs($(sitename)
+        format = $(repr(format)),
         modules = [$(pkgname)]
     )
 
