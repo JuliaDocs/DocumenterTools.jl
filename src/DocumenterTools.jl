@@ -23,7 +23,7 @@ Project.toml
 
 # Arguments
 
-**`path`** file path to the documentation directory.
+**`path`** file path to the documentation directory to be created. Default is `"docs"`).
 
 # Keywords Arguments
 
@@ -42,7 +42,7 @@ julia> Documenter.generate("path/to/MyPackage/docs")
 [ ... output ... ]
 ```
 """
-function generate(path::AbstractString; name::Union{AbstractString,Nothing}=nothing,
+function generate(path::AbstractString="docs"; name::Union{AbstractString,Nothing}=nothing,
                   format = :html)
     # TODO:
     #   - set up deployment to `gh-pages`
