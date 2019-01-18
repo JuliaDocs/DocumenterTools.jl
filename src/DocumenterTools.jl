@@ -38,7 +38,7 @@ to the `format` keyword to Documenter's `makedocs` function, see
 ```julia-repl
 julia> using DocumenterTools
 
-julia> Documenter.generate("path/to/MyPackage/docs")
+julia> DocumenterTools.generate("path/to/MyPackage/docs")
 [ ... output ... ]
 ```
 """
