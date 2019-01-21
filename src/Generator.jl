@@ -31,8 +31,8 @@ function make(pkgname; format = :html)
     fmtpkg = format === :markdown ? ", DocumenterMarkdown" :
              format === :pdf      ? ", DocumenterLaTeX" : ""
     fmtstr = format === :html ? "Documenter.HTML()" :
-             format === :markdown  ? "DocumenterMarkdown.Markdown()" :
-             format === :pdf  ? "DocumenterLaTeX.LaTeX()" : ""
+             format === :markdown  ? "Markdown()" :
+             format === :pdf  ? "LaTeX()" : ""
 
     sitename = format !== :markdown ? "\n    sitename = \"$(pkgname)\"," : ""
     """
