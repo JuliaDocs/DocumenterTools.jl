@@ -5,11 +5,16 @@ using DocStringExtensions
 export Travis
 
 """
-    DocumenterTools.generate(path::String; name = nothing, format = :html)
+    DocumenterTools.generate(path::String = "docs"; name = nothing, format = :html)
 
 Create a documentation stub in `path`, which is usually a sub folder in
 the package root. The name of the package is determined automatically,
 but can be given with the `name` keyword argument.
+
+`generate` can also be called without any arguments, in which case it simply puts all
+the generated files into a `docs` directory in the current working directory. This
+way, if you are already in the root directory of your package, you generally only need
+to call `generate()` to generate the documentation stub.
 
 `generate` creates the following files in `path`:
 
@@ -23,7 +28,7 @@ Project.toml
 
 # Arguments
 
-**`path`** file path to the documentation directory.
+**`path`** file path to the documentation directory to be created (default is `"docs"`).
 
 # Keywords Arguments
 
@@ -42,7 +47,7 @@ julia> DocumenterTools.generate("path/to/MyPackage/docs")
 [ ... output ... ]
 ```
 """
-function generate(path::AbstractString; name::Union{AbstractString,Nothing}=nothing,
+function generate(path::AbstractString="docs"; name::Union{AbstractString,Nothing}=nothing,
                   format = :html)
     # TODO:
     #   - set up deployment to `gh-pages`
