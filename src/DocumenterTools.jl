@@ -28,7 +28,7 @@ Project.toml
 
 # Arguments
 
-**`path`** file path to the documentation directory to be created. Default is `"docs"`).
+**`path`** file path to the documentation directory to be created (default is `"docs"`).
 
 # Keywords Arguments
 
