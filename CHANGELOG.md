@@ -1,6 +1,6 @@
 # DocumenterTools.jl changelog
 
-## Version `v0.2.0`
+## Version `v0.1.1`
 
 * ![Enhancement][badge-enhancement] The `generate(path::String)` method now defaults to `"docs"` as the default path, allowing it to be simply called as `generate()` in e.g. the root directory of a package. ([#22][github-22])
 
