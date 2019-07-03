@@ -41,7 +41,7 @@ julia> Travis.genkeys()
 
 ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 username@hostname
 
-[ Info: add a secure environment variable named 'DOCUMENTER_KEY' to https://travis-ci.org/\$USER/\$REPO/settings with value:
+[ Info: add a secure environment variable named 'DOCUMENTER_KEY' to https://travis-ci.com/\$USER/\$REPO/settings with value:
 
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 
@@ -51,7 +51,7 @@ julia> Travis.genkeys(user="JuliaDocs", repo="DocumenterTools.jl")
 
 ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 username@hostname
 
-[ Info: add a secure environment variable named 'DOCUMENTER_KEY' to https://travis-ci.org/JuliaDocs/DocumenterTools.jl/settings with value:
+[ Info: add a secure environment variable named 'DOCUMENTER_KEY' to https://travis-ci.com/JuliaDocs/DocumenterTools.jl/settings with value:
 
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 ```
@@ -80,7 +80,7 @@ function genkeys(; user="\$USER", repo="\$REPO")
     # Base64 encode the private key and prompt user to add it to travis. The key is
     # *not* encoded for the sake of security, but instead to make it easier to
     # copy/paste it over to travis without having to worry about whitespace.
-    let url = "https://travis-ci.org/$user/$repo/settings"
+    let url = "https://travis-ci.com/$user/$repo/settings"
         @info("add a secure environment variable named 'DOCUMENTER_KEY' to $url with value:")
         println("\n", base64encode(read(filename, String)), "\n")
         rm(filename)
@@ -118,7 +118,7 @@ julia> Travis.genkeys(DocumenterTools)
 
 ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 username@hostname
 
-[ Info: add a secure environment variable named 'DOCUMENTER_KEY' to https://travis-ci.org/JuliaDocs/DocumenterTools.jl/settings with value:
+[ Info: add a secure environment variable named 'DOCUMENTER_KEY' to https://travis-ci.com/JuliaDocs/DocumenterTools.jl/settings with value:
 
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 ```
