@@ -178,5 +178,6 @@ end
 
 include("Travis.jl")
 include("Generator.jl")
+include("Themes.jl")
 
 end # module
