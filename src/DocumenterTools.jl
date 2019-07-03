@@ -37,7 +37,7 @@ Project.toml
 
 **`format`** can be either `:html` (default), `:markdown` or `:pdf` corresponding
 to the `format` keyword to Documenter's `makedocs` function, see
-[Documenter's manual](https://juliadocs.github.io/Documenter.jl/latest/man/other-formats/).
+[Documenter's manual](https://juliadocs.github.io/Documenter.jl/stable/man/other-formats/).
 
 # Examples
 ```julia-repl
