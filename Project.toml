@@ -1,6 +1,6 @@
 name = "DocumenterTools"
 uuid = "35a29f4d-8980-5a13-9543-d66fff28ecb8"
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
