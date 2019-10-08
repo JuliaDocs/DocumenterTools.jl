@@ -2,8 +2,6 @@ module DocumenterTools
 
 using DocStringExtensions
 
-export Travis
-
 """
     DocumenterTools.generate(path::String = "docs"; name = nothing, format = :html)
 
@@ -176,7 +174,7 @@ function package_devpath(pkg::Module)
     return normpath(joinpath(path, "..", ".."))
 end
 
-include("Travis.jl")
+include("genkeys.jl")
 include("Generator.jl")
 
 end # module

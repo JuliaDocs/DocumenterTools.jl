@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.2`
+
+* ![Deprecation][badge-deprecation] The `Travis` submodule has been deprecated. Instead of `Travis.genkeys`, use `DocumenterTools.genkeys`. ([#30][github-30])
+
 ## Version `v0.1.1`
 
 * ![Enhancement][badge-enhancement] The `generate(path::String)` method now defaults to `"docs"` as the default path, allowing it to be simply called as `generate()` in e.g. the root directory of a package. ([#22][github-22])
@@ -11,8 +15,9 @@
 * Initial release.
 
 
-[github-22]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/22
 [github-21]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/21
+[github-22]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/22
+[github-30]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/30
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
