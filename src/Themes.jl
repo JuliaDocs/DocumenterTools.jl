@@ -1,3 +1,30 @@
+"""
+The [`Themes`](@ref) module contains APIs to more easily compile the Documenter Sass themes
+into CSS files.
+
+To compile an Sass file into a Documenter theme, you can use the [`Themes.compile`]
+function:
+
+```julia-repl
+julia> using DocumenterTools: Themes
+
+julia> Themes.compile("mytheme.scss")
+```
+
+When working on the Documenter built-in themes, the [`Themes.themewatcher`](@ref) function
+can be used to automatically update all the built-in themes when any of the Sass files are
+modified. To enable it, just run
+
+```julia-repl
+julia> using DocumenterTools: Themes
+
+julia> Themes.themewatcher()
+```
+
+Note that it will read and overwrite the Sass and CSS files of the Documenter of the
+environment DocumenterTools is loaded in — make sure that you have Documenter added as a
+development dependency to that environment.
+"""
 module Themes
 using FileWatching
 using Documenter.Writers: HTMLWriter
@@ -35,6 +62,13 @@ function compile_native_theme(name; dst = nothing)
     compile(src, dst)
     return dst
 end
+
+function compile_native_themes()
+    for theme in HTMLWriter.THEMES
+        compile_native_theme(theme)
+    end
+end
+
 
 # themewatcher() watches the Documenter theme source SCSS/Sass files and recompiles
 # the native themes if there are any changes
