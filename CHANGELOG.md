@@ -1,8 +1,6 @@
 # DocumenterTools.jl changelog
 
-## Version `v0.2.0`
-
-* The latest version of DocumenterTools now requires Documenter 0.24.
+## Version `v0.1.3`
 
 * ![Experimental][badge-experimental] ![Feature][badge-feature] The new `Themes` submodule provides an experimental API to compile Documenter Sass themes. ([#27][github-27])
 
