@@ -1,5 +1,11 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.2.0`
+
+* The latest version of DocumenterTools now requires Documenter 0.24.
+
+* ![Experimental][badge-experimental] ![Feature][badge-feature] The new `Themes` submodule provides an experimental API to compile Documenter Sass themes. ([#27][github-27])
+
 ## Version `v0.1.2`
 
 * ![Deprecation][badge-deprecation] The `Travis` submodule has been deprecated. Instead of `Travis.genkeys`, use `DocumenterTools.genkeys`. ([#30][github-30])
@@ -17,6 +23,7 @@
 
 [github-21]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/21
 [github-22]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/22
+[github-27]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/27
 [github-30]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/30
 
 
@@ -25,6 +32,7 @@
 [badge-feature]: https://img.shields.io/badge/feature-green.svg
 [badge-enhancement]: https://img.shields.io/badge/enhancement-blue.svg
 [badge-bugfix]: https://img.shields.io/badge/bugfix-purple.svg
+[badge-experimental]: https://img.shields.io/badge/experimental-lightgrey.svg
 
 <!--
 # Badges
@@ -34,4 +42,5 @@
 ![Feature][badge-feature]
 ![Enhancement][badge-enhancement]
 ![Bugfix][badge-bugfix]
+![Experimental][badge-experimental]
 -->
