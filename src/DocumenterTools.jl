@@ -176,5 +176,6 @@ end
 
 include("genkeys.jl")
 include("Generator.jl")
+include("Themes.jl")
 
 end # module
