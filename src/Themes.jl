@@ -2,7 +2,7 @@
 The [`Themes`](@ref) module contains APIs to more easily compile the Documenter Sass themes
 into CSS files.
 
-To compile an Sass file into a Documenter theme, you can use the [`Themes.compile`]
+To compile an Sass file into a Documenter theme, you can use the [`Themes.compile`](@ref)
 function:
 
 ```julia-repl
@@ -75,6 +75,12 @@ end
 const compiler_channel = Channel{Any}(1024)
 const tasks = Vector{Tuple{Task,Channel{Any}}}()
 
+"""
+    themewatcher()
+
+Starts an asynchronous background task that checks for changes in the Documenter Sass files
+and recompiles all native themes whenever changes are detected.
+"""
 themewatcher(; kwargs...) = isempty(tasks) ?
     themewatcher_start(; kwargs...) : themewatcher_stop(; kwargs...)
 
