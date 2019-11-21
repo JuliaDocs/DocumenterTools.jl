@@ -11,6 +11,8 @@ LibGit2 = "76f85450-5226-5b5a-8eaa-529ad045b433"
 Sass = "322a6be2-4ae8-5d68-aaf1-3e960788d1d9"
 
 [compat]
+Documenter = "0.20, 0.21, 0.22, 0.23, 0.24"
+Sass = "0.1"
 DocStringExtensions = "0.7, 0.8"
 julia = "1"
 
