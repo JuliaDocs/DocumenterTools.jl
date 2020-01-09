@@ -60,11 +60,9 @@ function genkeys(; user="\$USER", repo="\$REPO")
     if Sys.iswindows()
         success(`where where`)      || error("'where' not found.")
         success(`where ssh-keygen`) || error("'ssh-keygen' not found.")
-        success(`where git`)        || error("'git' not found.")
     else
         success(`which which`)      || error("'which' not found.")
         success(`which ssh-keygen`) || error("'ssh-keygen' not found.")
-        success(`which git`)        || error("'git' not found.")
     end
 
 
