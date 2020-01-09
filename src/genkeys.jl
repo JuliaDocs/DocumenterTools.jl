@@ -56,13 +56,14 @@ LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy
 ```
 """
 function genkeys(; user="\$USER", repo="\$REPO")
+    # Error checking. Do the required programs exist?
     if Sys.iswindows()
-        # Error checking. Do the required programs exist?
         success(`where where`)      || error("'where' not found.")
+        success(`where ssh-keygen`) || error("'ssh-keygen' not found.")
         success(`where git`)        || error("'git' not found.")
     else
-        # Error checking. Do the required programs exist?
         success(`which which`)      || error("'which' not found.")
+        success(`which ssh-keygen`) || error("'ssh-keygen' not found.")
         success(`which git`)        || error("'git' not found.")
     end
 
@@ -133,13 +134,14 @@ LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy
 ```
 """
 function genkeys(package::Module; remote="origin")
+    # Error checking. Do the required programs exist?
     if Sys.iswindows()
-        # Error checking. Do the required programs exist?
         success(`where where`)      || error("'where' not found.")
+        success(`where ssh-keygen`) || error("'ssh-keygen' not found.")
         success(`where git`)        || error("'git' not found.")
     else
-        # Error checking. Do the required programs exist?
         success(`which which`)      || error("'which' not found.")
+        success(`which ssh-keygen`) || error("'ssh-keygen' not found.")
         success(`which git`)        || error("'git' not found.")
     end
 
