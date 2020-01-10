@@ -27,7 +27,7 @@ respectively.
 This method of [`genkeys`](@ref) requires the following command lines programs to be
 installed:
 
-- `which`
+- `which` (Unix) or `where` (Windows)
 - `ssh-keygen`
 
 # Examples
@@ -57,8 +57,14 @@ LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy
 """
 function genkeys(; user="\$USER", repo="\$REPO")
     # Error checking. Do the required programs exist?
-    success(`which which`)      || error("'which' not found.")
-    success(`which ssh-keygen`) || error("'ssh-keygen' not found.")
+    if Sys.iswindows()
+        success(`where where`)      || error("'where' not found.")
+        success(`where ssh-keygen`) || error("'ssh-keygen' not found.")
+    else
+        success(`which which`)      || error("'which' not found.")
+        success(`which ssh-keygen`) || error("'ssh-keygen' not found.")
+    end
+
 
     directory = pwd()
     filename  = "documenter-private-key"
@@ -101,7 +107,7 @@ be used to specify which Git remote is used for guessing the repository's GitHub
 
 This method requires the following command lines programs to be installed:
 
-- `which`
+- `which` (Unix) or `where` (Windows)
 - `git`
 - `ssh-keygen`
 
@@ -127,8 +133,15 @@ LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy
 """
 function genkeys(package::Module; remote="origin")
     # Error checking. Do the required programs exist?
-    success(`which which`)      || error("'which' not found.")
-    success(`which git`)        || error("'git' not found.")
+    if Sys.iswindows()
+        success(`where where`)      || error("'where' not found.")
+        success(`where ssh-keygen`) || error("'ssh-keygen' not found.")
+        success(`where git`)        || error("'git' not found.")
+    else
+        success(`which which`)      || error("'which' not found.")
+        success(`which ssh-keygen`) || error("'ssh-keygen' not found.")
+        success(`which git`)        || error("'git' not found.")
+    end
 
     path = package_devpath(package)
 
