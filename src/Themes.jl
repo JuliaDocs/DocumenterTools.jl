@@ -45,7 +45,7 @@ function compile(src, dst=nothing)
         s = (endswith(src, ".scss") || endswith(src, ".sass")) ? first(splitext(src)) : src
         dst = "$(s).css"
     end
-    Sass.compile_file(src, dst; include_paths=HTMLWriter.ASSETS_SASS)
+    Sass.compile_file(src, dst; include_path=HTMLWriter.ASSETS_SASS)
 end
 
 """
