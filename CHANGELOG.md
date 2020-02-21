@@ -1,5 +1,13 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.5`
+
+* ![Bugfix][badge-bugfix] Fixes to the `Themes.compile` function, including making sure that the Sass include path is properly set up. ([#32][github-32], [#35][github-35])
+
+## Version `v0.1.4`
+
+* ![Enhancement][badge-enhancement] `Travis.genkeys()` now works on Windows even if the UNIX-y `which` is not available. ([#33][github-33])
+
 ## Version `v0.1.3`
 
 * ![Experimental][badge-experimental] ![Feature][badge-feature] The new `Themes` submodule provides an experimental API to compile Documenter Sass themes. ([#27][github-27])
@@ -23,6 +31,9 @@
 [github-22]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/22
 [github-27]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/27
 [github-30]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/30
+[github-32]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/32
+[github-33]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/33
+[github-35]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/35
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
