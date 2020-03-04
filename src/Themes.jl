@@ -40,11 +40,13 @@ The optional `dst` argument can be used to specify the output file. Otherwise, t
 extension of the `src` file is simply replaced by `.css`.
 """
 function compile(src, dst=nothing)
-    isfile(src) || error("$name not at $src")
+    isfile(src) || error("SCSS source file missing: $src")
     if dst === nothing
         s = (endswith(src, ".scss") || endswith(src, ".sass")) ? first(splitext(src)) : src
         dst = "$(s).css"
     end
+    # Create the directory for destination file if it doesn't exist
+    isdir(dirname(dst)) || mkpath(dirname(dst))
     Sass.compile_file(src, dst; include_path=HTMLWriter.ASSETS_SASS)
 end
 
