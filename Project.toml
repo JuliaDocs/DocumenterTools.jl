@@ -7,6 +7,7 @@ DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 FileWatching = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 Sass = "322a6be2-4ae8-5d68-aaf1-3e960788d1d9"
+Keygen = "d86bbb82-37b3-4007-a431-d95a92b013b0"
 
 [compat]
 Documenter = "0.20, 0.21, 0.22, 0.23, 0.24"

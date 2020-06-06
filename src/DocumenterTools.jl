@@ -177,4 +177,6 @@ end
 include("Generator.jl")
 include("Themes.jl")
 
+@deprecate genkeys Keygen.documenter_keygen
+
 end # module
