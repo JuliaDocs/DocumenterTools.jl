@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.6`
+
+Maintenance release declaring compatibility with Documenter 0.25.
+
 ## Version `v0.1.5`
 
 * ![Bugfix][badge-bugfix] Fixes to the `Themes.compile` function, including making sure that the Sass include path is properly set up. ([#32][github-32], [#35][github-35])
