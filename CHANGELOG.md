@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.6`
+
+Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-39])
+
 ## Version `v0.1.5`
 
 * ![Bugfix][badge-bugfix] Fixes to the `Themes.compile` function, including making sure that the Sass include path is properly set up. ([#32][github-32], [#35][github-35])
@@ -34,6 +38,7 @@
 [github-32]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/32
 [github-33]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/33
 [github-35]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/35
+[github-39]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/39
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
