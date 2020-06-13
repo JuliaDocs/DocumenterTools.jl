@@ -2,7 +2,7 @@
 
 ## Version `v0.1.6`
 
-Maintenance release declaring compatibility with Documenter 0.25.
+Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-39])
 
 ## Version `v0.1.5`
 
@@ -38,6 +38,7 @@ Maintenance release declaring compatibility with Documenter 0.25.
 [github-32]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/32
 [github-33]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/33
 [github-35]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/35
+[github-39]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/39
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
