@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.7`
+
+* ![Enhancement][badge-enhancement] `DocumenterTools.genkeys` now puts "Documenter" as the comment in the SSH key file, instead of the default username and hostname. ([#40][github-40])
+
 ## Version `v0.1.6`
 
 Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-39])
@@ -39,6 +43,7 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-33]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/33
 [github-35]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/35
 [github-39]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/39
+[github-40]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/40
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
