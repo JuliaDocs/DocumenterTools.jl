@@ -5,13 +5,14 @@
 | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
 
 This package contains utilities for setting up documentation generation with
-[`Documenter.jl`][documenter]. For documentation see [`Documenter.jl`s
+[`Documenter.jl`][documenter]. For documentation watch [`Documenter.jl`s
 documentation][documenter-docs].
 
 ## Installation
 
-The package can be added using the Julia package manager. From the Julia REPL, type `]` to
-enter the Pkg REPL mode and run
+The package can be added using the Julia package manager.
+From the Julia REPL, type `]` to
+enter the Pkg REPL mode and then run.
 
 ```
 pkg> add DocumenterTools
