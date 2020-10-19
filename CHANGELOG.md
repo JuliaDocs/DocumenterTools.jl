@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.8`
+
+* ![Maintenance][badge-maintenance] Fixes broken links in the documentation ([#43][github-43]) and reliance on old (broken) `pathof` behaviour in the tests ([#44][github-44]).
+
 ## Version `v0.1.7`
 
 * ![Enhancement][badge-enhancement] `DocumenterTools.genkeys` now puts "Documenter" as the comment in the SSH key file, instead of the default username and hostname. ([#40][github-40])
@@ -44,6 +48,8 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-35]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/35
 [github-39]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/39
 [github-40]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/40
+[github-43]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/43
+[github-44]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/44
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
@@ -52,6 +58,7 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [badge-enhancement]: https://img.shields.io/badge/enhancement-blue.svg
 [badge-bugfix]: https://img.shields.io/badge/bugfix-purple.svg
 [badge-experimental]: https://img.shields.io/badge/experimental-lightgrey.svg
+[badge-maintenance]: https://img.shields.io/badge/maintenance-gray.svg
 
 <!--
 # Badges
@@ -62,4 +69,5 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 ![Enhancement][badge-enhancement]
 ![Bugfix][badge-bugfix]
 ![Experimental][badge-experimental]
+![Maintenance][badge-maintenance]
 -->
