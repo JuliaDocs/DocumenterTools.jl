@@ -12,10 +12,10 @@ using DocumenterTools
     end
 
     @testset "genkeys-deved" begin
-        using Pkg;
-        Pkg.develop("Example")
-        using Example
-        DocumenterTools.genkeys(Example)
+        using Pkg
+        Pkg.develop("DocumenterLaTeX")
+        using DocumenterLaTeX
+        DocumenterTools.genkeys(DocumenterLaTeX)
     end
 
 
