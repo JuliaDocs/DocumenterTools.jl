@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.9`
+
+* Declare compatibility with Documenter 0.26. ([#46][github-46])
+
 ## Version `v0.1.8`
 
 * ![Maintenance][badge-maintenance] Fixes broken links in the documentation ([#43][github-43]) and reliance on old (broken) `pathof` behaviour in the tests ([#44][github-44]).
@@ -50,6 +54,7 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-40]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/40
 [github-43]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/43
 [github-44]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/44
+[github-46]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/46
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
