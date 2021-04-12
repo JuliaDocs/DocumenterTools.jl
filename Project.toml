@@ -13,7 +13,7 @@ Sass = "322a6be2-4ae8-5d68-aaf1-3e960788d1d9"
 [compat]
 DocStringExtensions = "0.7, 0.8"
 Documenter = "0.20, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26"
-Sass = "0.1"
+Sass = "0.1, 0.2"
 julia = "1"
 
 [extras]
