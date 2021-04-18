@@ -13,9 +13,9 @@ using DocumenterTools
 
     @testset "genkeys-deved" begin
         using Pkg
-        Pkg.develop("DocumenterLaTeX")
-        using DocumenterLaTeX
-        DocumenterTools.genkeys(DocumenterLaTeX)
+        Pkg.develop("DocumenterMarkdown")
+        using DocumenterMarkdown
+        DocumenterTools.genkeys(DocumenterMarkdown)
     end
 
 
