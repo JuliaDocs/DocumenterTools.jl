@@ -1,6 +1,6 @@
 module OutdatedWarning
 
-using Gumbo, AbstractTrees
+using Gumbo, AbstractTrees, Documenter
 
 OLD_VERSION_CSS = replace("""
 .outdated-warning-overlay {
@@ -28,7 +28,9 @@ OLD_VERSION_CSS = replace("""
       color: #363636; }
 """, '\n' => "")
 
-OLD_VERSION_SCRIPT_ATTR = "data-is-old-version"
+OUTDATED_VERSION_ATTR = isdefined(Documenter.Writers.HTMLWriter, :OUTDATED_VERSION_ATTR) ?
+    Documenter.Writers.HTMLWriter.OUTDATED_VERSION_ATTR : "data-outdated-warner"
+
 OLD_VERSION_WARNER = """
 function maybeAddWarning () {
     const head = document.getElementsByTagName('head')[0];
@@ -98,7 +100,7 @@ function add_old_docs_notice(index, force = false)
 end
 
 function make_notice(parent)
-    script = Gumbo.HTMLElement{:script}([], parent, Dict(OLD_VERSION_SCRIPT_ATTR => ""))
+    script = Gumbo.HTMLElement{:script}([], parent, Dict(OUTDATED_VERSION_ATTR => ""))
     content = Gumbo.HTMLText(script, OLD_VERSION_WARNER)
     push!(script.children, content)
     return script
@@ -115,7 +117,7 @@ function get_notice(html)
     for el in PreOrderDFS(html)
         if el isa HTMLElement && Gumbo.tag(el) == :script
             attrs = Gumbo.attrs(el)
-            if haskey(attrs, OLD_VERSION_SCRIPT_ATTR)
+            if haskey(attrs, OUTDATED_VERSION_ATTR)
                 return el
             end
         end
