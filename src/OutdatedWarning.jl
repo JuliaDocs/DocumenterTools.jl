@@ -5,9 +5,9 @@ using Gumbo, AbstractTrees, Documenter
 OLD_VERSION_CSS = replace("""
 .outdated-warning-overlay {
   position: fixed;
-  width: 100%;
   top: 0;
   left: 0;
+  right: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 999;
   background-color: #ffaba7;
