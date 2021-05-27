@@ -163,8 +163,11 @@ function generate(io::IO, root::String;force = false)
                 if ext == ".html"
                     try
                         did_change = add_old_docs_notice(joinpath(root, file), force)
-                        print(io, did_change ? "." : " ")
+                        print(io, did_change ? "✓" : ".")
                     catch err
+                        if err isa InterruptException
+                            rethrow()
+                        end
                         @debug "Fatally failed to add a outdated warning" exception = (err, catch_backtrace())
                         print(io, "!")
                     end
