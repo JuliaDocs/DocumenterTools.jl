@@ -1,5 +1,6 @@
-module OutdatedWarning
+export OutdatedWarning
 
+module OutdatedWarning
 using Gumbo, AbstractTrees, Documenter
 
 OLD_VERSION_CSS = replace("""
@@ -80,23 +81,29 @@ function add_old_docs_notice(index, force = false)
     html = read(index, String)
     parsed = Gumbo.parsehtml(html)
 
+    did_update = false
     for el in PreOrderDFS(parsed.root)
         if el isa HTMLElement && Gumbo.tag(el) == :head
             old_notice = get_notice(el)
 
             if old_notice === nothing
                 push!(el.children, make_notice(el))
+                did_update = true
             elseif force
                 update_notice(old_notice)
+                did_update = true
             end
 
             break
         end
     end
 
-    open(string(index), "w") do io
-        print(io, parsed)
+    if did_update
+        open(index, "w") do io
+            print(io, parsed)
+        end
     end
+    return did_update
 end
 
 function make_notice(parent)
@@ -126,22 +133,17 @@ function get_notice(html)
 end
 
 """
-    generate([io::IO = stdout,] root::String; latest = "stable", force = false)
+    generate([io::IO = stdout,] root::String;force = false)
 
 This function adds a warning (and `noindex` meta tag) to all versions of
-the documentation in `root` except for `latest`.
+the documentation in `root`.
 
 `force` overwrites a previous injected warning message created by this function.
 
 A typical use case is to run this on the `gh-pages` branch of a packge.
 """
 generate(root::String; kwargs...) = generate(stdout, root; kwargs...)
-function generate(io::IO, root::String; latest = "stable", force = false)
-    latest = joinpath(root, latest)
-    while islink(latest)
-        latest = joinpath(root, readlink(latest))
-    end
-
+function generate(io::IO, root::String;force = false)
     for dir in readdir(root)
         path = joinpath(root, dir)
         islink(path) && continue
@@ -154,21 +156,22 @@ function generate(io::IO, root::String; latest = "stable", force = false)
             continue
         end
 
-        if path == latest
-            println(io, "Skipping $(dir) since it's the latest version.")
-        else
-            print(io, "Processing $(dir): ")
-            for (root, _, files) in walkdir(path)
-                for file in files
-                    _, ext = splitext(file)
-                    if ext == ".html"
-                        print(io, ".")
-                        add_old_docs_notice(joinpath(root, file), force)
+        print(io, "Processing $(dir): ")
+        for (root, _, files) in walkdir(path)
+            for file in files
+                _, ext = splitext(file)
+                if ext == ".html"
+                    try
+                        did_change = add_old_docs_notice(joinpath(root, file), force)
+                        print(io, did_change ? "." : " ")
+                    catch err
+                        @debug "Fatally failed to add a outdated warning" exception = (err, catch_backtrace())
+                        print(io, "!")
                     end
                 end
             end
-            println(io)
         end
+        println(io)
     end
 end
 
