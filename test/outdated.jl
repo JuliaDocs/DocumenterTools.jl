@@ -5,7 +5,7 @@ output = read(index_changed, String)
 
 @test occursin("data-outdated-warner", output)
 # The following is sensitive to how Gumbo.jl writes HTML, but let's hope that doesn't change often:
-@test replace(output, "\r\n" => "\n") == read(joinpath(@__DIR__, "fixtures", "index_after.html"), String)
+@test replace(output, "\r\n" => "\n") == replace(read(joinpath(@__DIR__, "fixtures", "index_after.html"), String), "\r\n" => "\n")
 
 rm(index_changed)
 
@@ -18,7 +18,7 @@ for (root, _, files) in walkdir(transient_path)
     for file in files
         content = read(joinpath(root, file), String)
         expected = read(joinpath(replace(root, "transient" => "post"), file), String)
-        @test replace(content, "\r\n" => "\n") == expected
+        @test replace(content, "\r\n" => "\n") == replace(expected, "\r\n" => "\n")
     end
 end
 
