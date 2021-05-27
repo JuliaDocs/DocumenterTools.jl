@@ -14,7 +14,7 @@ transient_path = joinpath(@__DIR__, "fixtures", "transient")
 cp(joinpath(@__DIR__, "fixtures", "pre"), transient_path, force=true)
 OutdatedWarning.generate(transient_path)
 
-for (root, _, files) in walkdir(transient_path, onerror=identity)
+for (root, _, files) in walkdir(transient_path)
     for file in files
         content = read(joinpath(root, file), String)
         expected = read(joinpath(replace(root, "transient" => "post"), file), String)
