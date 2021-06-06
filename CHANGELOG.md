@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.11`
+
+* DocumenterTools now provides the `OutdatedWarning.generate` function which can be used to add outdated version warnings to old documentation builds (on `gh-pages`). ([#51][github-51])
+
 ## Version `v0.1.10`
 
 * Declare compatibility with Sass.jl 0.2. ([#49][github-49])
@@ -60,6 +64,7 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-44]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/44
 [github-46]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/46
 [github-49]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/49
+[github-51]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/51
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg

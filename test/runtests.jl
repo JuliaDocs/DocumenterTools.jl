@@ -18,5 +18,7 @@ using DocumenterTools
         DocumenterTools.genkeys(DocumenterMarkdown)
     end
 
-
+    @testset "outdated warnings" begin
+        include("outdated.jl")
+    end
 end
