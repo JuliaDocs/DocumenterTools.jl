@@ -2,7 +2,7 @@
 
 ## Version `v0.1.11`
 
-* DocumenterTools now provides the `OutdatedWarning.generate` which can be used to add outdated version warning boxed to old documentation builds (on `gh-pages`). ([#51][github-51])
+* DocumenterTools now provides the `OutdatedWarning.generate` function which can be used to add outdated version warnings to old documentation builds (on `gh-pages`). ([#51][github-51])
 
 ## Version `v0.1.10`
 
