@@ -65,7 +65,7 @@ function maybeAddWarning () {
     if (window.documenterBaseURL) {
         href = window.documenterBaseURL + '/../stable';
     }
-    div.innerHTML = 'This is an old version of the documentation. <br> <a href="' + href + '">Go to the newest version</a>.';
+    div.innerHTML = 'This documentation is not for the latest version. <br> <a href="' + href + '">Go to the newest version</a>.';
     div.appendChild(closer);
     document.body.appendChild(div);
 };
