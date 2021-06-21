@@ -135,14 +135,25 @@ end
 """
     generate([io::IO = stdout,] root::String;force = false)
 
-This function adds a warning (and `noindex` meta tag) to all versions of
-the documentation in `root`.
+This function adds a (unconditional) warning (and `noindex` meta tag) to all
+versions of the documentation in `root`.
 
 `force` overwrites a previous injected warning message created by this function.
 
-A typical use case is to run this on the `gh-pages` branch of a packge.
+A typical use case is to run this on the `gh-pages` branch of a package. Make sure
+you review which changes you check in if you are *not* tagging a new release
+of your package's documentation at the same time.
 """
-generate(root::String; kwargs...) = generate(stdout, root; kwargs...)
+function generate(root::String; kwargs...)
+    @warn("""
+    Adding an `OutdatedWarning` to all versions of the documentation in $(root).
+    A typical use case is to run this on the `gh-pages` branch of a package. Make sure
+    you review which changes you check in if you are *not* tagging a new release
+    of your package's documentation at the same time. For example you should
+    _not_ check in the folder `vX.Y.Z` corresponding to your latest release.
+    """)
+    return generate(stdout, root; kwargs...)
+end
 function generate(io::IO, root::String;force = false)
     for dir in readdir(root)
         path = joinpath(root, dir)
