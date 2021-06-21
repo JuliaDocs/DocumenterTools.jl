@@ -135,7 +135,7 @@ end
 """
     generate([io::IO = stdout,] root::String;force = false)
 
-This function adds a (nonconditional) warning (and `noindex` meta tag) to all
+This function adds a (unconditional) warning (and `noindex` meta tag) to all
 versions of the documentation in `root`.
 
 `force` overwrites a previous injected warning message created by this function.
