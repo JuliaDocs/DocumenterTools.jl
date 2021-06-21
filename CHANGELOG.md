@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.14`
+
+* ![Enhancement][badge-enhancement] Improvements to the documentation of `OutdatedWarning.generate` and it now also prints a warning in the terminal. ([#55][github-55])
+
 ## Version `v0.1.13`
 
 * ![Enhancement][badge-enhancement] The wording of the text in the the old version warning box was improved. ([#54][github-54])
@@ -75,6 +79,7 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-51]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/51
 [github-52]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/52
 [github-54]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/54
+[github-55]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/55
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
