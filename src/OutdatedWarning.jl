@@ -146,13 +146,12 @@ of your package's documentation at the same time.
 """
 function generate(root::String; kwargs...)
     @warn("""
-Adding an `OutdatedWarning` to all versions of the documentation in $(root).
-
-A typical use case is to run this on the `gh-pages` branch of a package. Make sure
-you review which changes you check in if you are *not* tagging a new release
-of your package's documentation at the same time. For example you should 
-_not_ check in the folder `vX.Y.Z` corresponding to your latest release. 
-""")
+    Adding an `OutdatedWarning` to all versions of the documentation in $(root).
+    A typical use case is to run this on the `gh-pages` branch of a package. Make sure
+    you review which changes you check in if you are *not* tagging a new release
+    of your package's documentation at the same time. For example you should
+    _not_ check in the folder `vX.Y.Z` corresponding to your latest release.
+    """)
     return generate(stdout, root; kwargs...)
 end
 function generate(io::IO, root::String;force = false)
