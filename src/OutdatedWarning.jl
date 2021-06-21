@@ -135,12 +135,14 @@ end
 """
     generate([io::IO = stdout,] root::String;force = false)
 
-This function adds a warning (and `noindex` meta tag) to all versions of
-the documentation in `root`.
+This function adds a (nonconditional) warning (and `noindex` meta tag) to all
+versions of the documentation in `root`.
 
 `force` overwrites a previous injected warning message created by this function.
 
-A typical use case is to run this on the `gh-pages` branch of a packge.
+A typical use case is to run this on the `gh-pages` branch of a packge. Make sure
+you review which changes you check in if you are *not* tagging a new release
+of your package's documentation at the same time.
 """
 generate(root::String; kwargs...) = generate(stdout, root; kwargs...)
 function generate(io::IO, root::String;force = false)
