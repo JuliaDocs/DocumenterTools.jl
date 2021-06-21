@@ -140,7 +140,7 @@ versions of the documentation in `root`.
 
 `force` overwrites a previous injected warning message created by this function.
 
-A typical use case is to run this on the `gh-pages` branch of a packge. Make sure
+A typical use case is to run this on the `gh-pages` branch of a package. Make sure
 you review which changes you check in if you are *not* tagging a new release
 of your package's documentation at the same time.
 """
