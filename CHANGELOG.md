@@ -4,6 +4,7 @@
 
 * DocumenterTools now requires at least Julia 1.6.
 * ![Enhancement][badge-enhancement] `DocumenterTools.genkeys` function now uses the `OpenSSH_jll` for the `ssh-keygen` binary and therefore no longer requires the user to have OpenSSH installed. ([#36][github-36], [#56][github-56])
+* ![Enhancement][badge-enhancement] Improvements to the documentation of `OutdatedWarning.generate` and it now also prints a warning in the terminal. ([#55][github-55])
 
 ## Version `v0.1.13`
 
@@ -81,6 +82,7 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-51]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/51
 [github-52]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/52
 [github-54]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/54
+[github-55]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/55
 [github-56]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/56
 
 
