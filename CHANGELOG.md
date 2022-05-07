@@ -85,6 +85,7 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-55]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/55
 [github-56]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/56
 
+
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
 [badge-deprecation]: https://img.shields.io/badge/deprecation-orange.svg
 [badge-feature]: https://img.shields.io/badge/feature-green.svg
