@@ -58,12 +58,7 @@ function genkeys(; user="\$USER", repo="\$REPO")
     isfile("$(filename).pub") && error("temporary file '$(filename).pub' already exists in working directory")
 
     # Generate the ssh key pair.
-    try
-        run(`$(sshkeygen) -N "" -C Documenter -f $filename`)
-    catch e
-        @error "failed to generate a SSH key pair" exception  = e
-        error("failed to generate a SSH key pair.")
-    end
+    success(`$(sshkeygen) -N "" -C Documenter -f $filename`) || error("failed to generate a SSH key pair.")
 
     # Prompt user to add public key to github then remove the public key.
     let url = "https://github.com/$user/$repo/settings/keys"
