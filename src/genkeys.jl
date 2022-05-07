@@ -52,8 +52,6 @@ LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy
 """
 function genkeys(; user="\$USER", repo="\$REPO")
     sshkeygen = ssh_keygen()
-    @show sshkeygen[1]
-    @assert isfile(sshkeygen[1])
 
     filename  = "documenter-private-key"
     isfile(filename) && error("temporary file '$(filename)' already exists in working directory")
