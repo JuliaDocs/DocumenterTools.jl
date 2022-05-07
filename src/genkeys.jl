@@ -11,6 +11,7 @@ end # module
 
 using Base64
 import LibGit2: GITHUB_REGEX
+using OpenSSH_jll: ssh_keygen
 
 """
     DocumenterTools.genkeys(; user="\$USER", repo="\$REPO")
@@ -23,12 +24,6 @@ The optional `user` and `repo` keyword arguments can be specified so that the UR
 printed instructions could be copied directly. They should be the name of the GitHub user or
 organization where the repository is hosted and the full name of the repository,
 respectively.
-
-This method of [`genkeys`](@ref) requires the following command lines programs to be
-installed:
-
-- `which` (Unix) or `where` (Windows)
-- `ssh-keygen`
 
 # Examples
 
@@ -56,24 +51,14 @@ LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy
 ```
 """
 function genkeys(; user="\$USER", repo="\$REPO")
-    # Error checking. Do the required programs exist?
-    if Sys.iswindows()
-        success(`where where`)      || error("'where' not found.")
-        success(`where ssh-keygen`) || error("'ssh-keygen' not found.")
-    else
-        success(`which which`)      || error("'which' not found.")
-        success(`which ssh-keygen`) || error("'ssh-keygen' not found.")
-    end
+    sshkeygen = ssh_keygen()
 
-
-    directory = pwd()
     filename  = "documenter-private-key"
-
     isfile(filename) && error("temporary file '$(filename)' already exists in working directory")
     isfile("$(filename).pub") && error("temporary file '$(filename).pub' already exists in working directory")
 
     # Generate the ssh key pair.
-    success(`ssh-keygen -N "" -C Documenter -f $filename`) || error("failed to generate a SSH key pair.")
+    success(`$(sshkeygen) -N "" -C Documenter -f $filename`) || error("failed to generate a SSH key pair.")
 
     # Prompt user to add public key to github then remove the public key.
     let url = "https://github.com/$user/$repo/settings/keys"
@@ -109,7 +94,6 @@ This method requires the following command lines programs to be installed:
 
 - `which` (Unix) or `where` (Windows)
 - `git`
-- `ssh-keygen`
 
 !!! note
     The package must be in development mode. Make sure you run
@@ -135,11 +119,9 @@ function genkeys(package::Module; remote="origin")
     # Error checking. Do the required programs exist?
     if Sys.iswindows()
         success(`where where`)      || error("'where' not found.")
-        success(`where ssh-keygen`) || error("'ssh-keygen' not found.")
         success(`where git`)        || error("'git' not found.")
     else
         success(`which which`)      || error("'which' not found.")
-        success(`which ssh-keygen`) || error("'ssh-keygen' not found.")
         success(`which git`)        || error("'git' not found.")
     end
 
