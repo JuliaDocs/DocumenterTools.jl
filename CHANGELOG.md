@@ -1,5 +1,26 @@
 # DocumenterTools.jl changelog
 
+## Unreleased
+
+* DocumenterTools now requires at least Julia 1.6.
+* ![Enhancement][badge-enhancement] `DocumenterTools.genkeys` function now uses the `OpenSSH_jll` for the `ssh-keygen` binary and therefore no longer requires the user to have OpenSSH installed. ([#36][github-36], [#56][github-56])
+
+## Version `v0.1.13`
+
+* ![Enhancement][badge-enhancement] The wording of the text in the the old version warning box was improved. ([#54][github-54])
+
+## Version `v0.1.12`
+
+* Declare compatibility with Documenter 0.26. ([#52][github-52])
+
+## Version `v0.1.11`
+
+* DocumenterTools now provides the `OutdatedWarning.generate` function which can be used to add outdated version warnings to old documentation builds (on `gh-pages`). ([#51][github-51])
+
+## Version `v0.1.10`
+
+* Declare compatibility with Sass.jl 0.2. ([#49][github-49])
+
 ## Version `v0.1.9`
 
 * Declare compatibility with Documenter 0.26. ([#46][github-46])
@@ -50,11 +71,17 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-32]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/32
 [github-33]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/33
 [github-35]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/35
+[github-36]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/36
 [github-39]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/39
 [github-40]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/40
 [github-43]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/43
 [github-44]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/44
 [github-46]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/46
+[github-49]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/49
+[github-51]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/51
+[github-52]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/52
+[github-54]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/54
+[github-56]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/56
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
