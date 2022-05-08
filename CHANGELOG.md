@@ -1,6 +1,6 @@
 # DocumenterTools.jl changelog
 
-## Unreleased
+## Version `v0.1.14`
 
 * DocumenterTools now requires at least Julia 1.6.
 * ![Enhancement][badge-enhancement] `DocumenterTools.genkeys` function now uses the `OpenSSH_jll` for the `ssh-keygen` binary and therefore no longer requires the user to have OpenSSH installed. ([#36][github-36], [#56][github-56])
