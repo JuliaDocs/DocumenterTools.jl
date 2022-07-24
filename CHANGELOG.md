@@ -13,7 +13,7 @@
 
 ## Version `v0.1.12`
 
-* Declare compatibility with Documenter 0.26. ([#52][github-52])
+* Declare compatibility with Documenter 0.27. ([#52][github-52])
 
 ## Version `v0.1.11`
 
