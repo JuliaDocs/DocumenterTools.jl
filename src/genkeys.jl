@@ -62,8 +62,10 @@ function genkeys(; user="\$USER", repo="\$REPO")
 
     # Prompt user to add public key to github then remove the public key.
     let url = "https://github.com/$user/$repo/settings/keys"
-        @info("add a public key to $url with an empty title (GitHub will infer it), " *
-              "the following key, and read/write access.")
+        @info """
+        add the public key below to $url with read & write access
+        the title can be left empty, as GitHub can infer it from the key comment
+        """
         println("\n", read("$filename.pub", String))
         rm("$filename.pub")
     end
