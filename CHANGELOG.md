@@ -1,5 +1,10 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.15`
+
+* Declare compatibility with DocStringExtensions 0.9. ([#59][github-59])
+* Declare compatibility with AbstractTrees 0.4. ([#60][github-60])
+
 ## Version `v0.1.14`
 
 * DocumenterTools now requires at least Julia 1.6.
