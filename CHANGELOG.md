@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.16`
+
+* ![Bugfix][badge-bugfix] DocumenterTools now runs `ssh-keygen` in a temporary directory (rather than current working directory), avoiding issues with filesystem permissions or existing files. ([#65][github-65])
+
 ## Version `v0.1.15`
 
 * Declare compatibility with DocStringExtensions 0.9. ([#59][github-59])
@@ -91,6 +95,7 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-54]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/54
 [github-55]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/55
 [github-56]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/56
+[github-65]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/65
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg

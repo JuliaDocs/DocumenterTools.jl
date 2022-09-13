@@ -58,33 +58,47 @@ function genkeys(; user="\$USER", repo="\$REPO")
     isfile("$(filename).pub") && error("temporary file '$(filename).pub' already exists in working directory")
 
     # Generate the ssh key pair.
-    try
-        run(`$(sshkeygen) -N "" -C Documenter -m PEM -f $filename`)
-    catch e
-        @error "failed to generate a SSH key pair." exception = (e, catch_backtrace())
-        rethrow(e)
-    end
+    mktempdir() do path
+        cd(path) do
+            cmd = `$(sshkeygen) -N "" -C Documenter -m PEM -f $filename`
+            out, err = IOBuffer(), IOBuffer()
+            try
+                run(pipeline(cmd, stdout=out, stderr=err))
 
-    # Prompt user to add public key to github then remove the public key.
-    let url = "https://github.com/$user/$repo/settings/keys"
-        @info """
-        add the public key below to $url with read and write access
-        the title can be left empty as GitHub can infer it from the key comment
-        """
-        println("\n", read("$filename.pub", String))
-        rm("$filename.pub")
-    end
+                # Prompt user to add public key to github then remove the public key.
+                let url = "https://github.com/$user/$repo/settings/keys"
+                    @info """
+                    add the public key below to $url with read and write access
+                    the title can be left empty as GitHub can infer it from the key comment
+                    """
+                    println("\n", read("$filename.pub", String))
+                end
 
-    # Base64 encode the private key and prompt user to add it to travis. The key is
-    # *not* encoded for the sake of security, but instead to make it easier to
-    # copy/paste it over to travis without having to worry about whitespace.
-    let travis_url = "https://travis-ci.com/$user/$repo/settings",
-        github_url = "https://github.com/$user/$repo/settings/secrets"
-        @info("add a secure environment variable named 'DOCUMENTER_KEY' to " *
-              "$(travis_url) (if you deploy using Travis CI) or " *
-              "$(github_url) (if you deploy using GitHub Actions) with value:")
-        println("\n", base64encode(read(filename, String)), "\n")
-        rm(filename)
+                # Base64 encode the private key and prompt user to add it to travis. The key is
+                # *not* encoded for the sake of security, but instead to make it easier to
+                # copy/paste it over to travis without having to worry about whitespace.
+                let travis_url = "https://travis-ci.com/$user/$repo/settings",
+                    github_url = "https://github.com/$user/$repo/settings/secrets"
+                    @info("add a secure environment variable named 'DOCUMENTER_KEY' to " *
+                        "$(travis_url) (if you deploy using Travis CI) or " *
+                        "$(github_url) (if you deploy using GitHub Actions) with value:")
+                    println("\n", base64encode(read(filename, String)), "\n")
+                end
+            catch e
+                @error """
+                Failed to generate a SSH key pair.
+                > stdout from ssh-keygen:
+                $(String(take!(out)))
+                > stderr from ssh-keygen:
+                $(String(take!(err)))
+                """ isfile(filename) isfile("$(filename).pub") exception = (e, catch_backtrace())
+                rethrow(e)
+            finally
+                # mktempdir() should clean up the the files, but just in case..
+                rm(filename, force=true)
+                rm("$(filename).pub", force=true)
+            end
+        end
     end
 end
 
