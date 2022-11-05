@@ -1,8 +1,8 @@
 # DocumenterTools
 
-| **Build Status**                                                                                |
-|:-----------------------------------------------------------------------------------------------:|
-| [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
+| **Documentation**                       | **Build Status**                                                                                |
+|:---------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+| [![][docs-stable-img]][docs-stable-url] | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
 
 This package contains utilities for setting up documentation generation with
 [`Documenter.jl`][documenter]. For documentation see [`Documenter.jl`s
