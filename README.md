@@ -21,7 +21,7 @@ pkg> add DocumenterTools
 [documenter-docs]: https://juliadocs.github.io/Documenter.jl/stable/
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
-[docs-stable-url]: https://juliadocs.github.io/DocumenterTools.jl/stable
+[docs-stable-url]: https://docs.juliahub.com/DocumenterTools/
 
 [travis-img]: https://travis-ci.org/JuliaDocs/DocumenterTools.jl.svg?branch=master
 [travis-url]: https://travis-ci.org/JuliaDocs/DocumenterTools.jl
