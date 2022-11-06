@@ -21,11 +21,5 @@ pkg> add DocumenterTools
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
 [docs-stable-url]: https://documenter.juliadocs.org/stable/lib/internals/documentertools/
 
-[travis-img]: https://travis-ci.org/JuliaDocs/DocumenterTools.jl.svg?branch=master
-[travis-url]: https://travis-ci.org/JuliaDocs/DocumenterTools.jl
-
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/xx7nimfpnl1r4gx0?svg=true
-[appveyor-url]: https://ci.appveyor.com/project/JuliaDocs/documentertools-jl
-
 [codecov-img]: https://codecov.io/gh/JuliaDocs/DocumenterTools.jl/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/JuliaDocs/DocumenterTools.jl
