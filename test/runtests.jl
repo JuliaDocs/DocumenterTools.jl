@@ -1,5 +1,6 @@
 using Test
 using DocumenterTools
+import Documenter
 
 @testset "DocumenterTools" begin
     @testset "generate" begin
@@ -21,4 +22,6 @@ using DocumenterTools
     @testset "outdated warnings" begin
         include("outdated.jl")
     end
+
+    Documenter.doctest(nothing, [DocumenterTools])
 end
