@@ -124,7 +124,7 @@ automatically from the module.
 
 !!! note
     The package must be in development mode. Make sure you run
-    `pkg> develop pkg` from the Pkg REPL, or `Pkg.develop(\"pkg\")`
+    `pkg> develop MyPackage` from the Pkg REPL, or `Pkg.develop(\"MyPackage\")`
     before generating docs.
 
 # Examples
