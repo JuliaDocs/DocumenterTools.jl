@@ -27,25 +27,27 @@ respectively.
 
 # Examples
 
-```julia-repl
+```jldoctest; filter = [r"ssh-rsa [A-Za-z0-9+/=.]+", r"LS0t[A-Za-z0-9+/=.]+"]
 julia> using DocumenterTools
 
 julia> DocumenterTools.genkeys()
-[ Info: add the public key below to https://github.com/\$USER/\$REPO/settings/keys with read/write access:
+┌ Info: Add the key below as a new 'Deploy key' on GitHub (https://github.com/\$USER/\$REPO/settings/keys) with read and write access.
+└ The 'Title' field can be left empty as GitHub can infer it from the key comment.
 
-ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 username@hostname
+ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 Documenter
 
-[ Info: add a secure environment variable named 'DOCUMENTER_KEY' to https://travis-ci.com/\$USER/\$REPO/settings (if you deploy using Travis CI) or https://github.com/\$USER/\$REPO/settings/secrets (if you deploy using GitHub Actions) with value:
+[ Info: Add a secure environment variable named 'DOCUMENTER_KEY' (to https://github.com/\$USER/\$REPO/settings/secrets if you deploy using GitHub Actions) with value:
 
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 
 
 julia> DocumenterTools.genkeys(user="JuliaDocs", repo="DocumenterTools.jl")
-[Info: add the public key below to https://github.com/JuliaDocs/DocumenterTools.jl/settings/keys with read/write access:
+┌ Info: Add the key below as a new 'Deploy key' on GitHub (https://github.com/JuliaDocs/DocumenterTools.jl/settings/keys) with read and write access.
+└ The 'Title' field can be left empty as GitHub can infer it from the key comment.
 
-ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 username@hostname
+ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 Documenter
 
-[ Info: add a secure environment variable named 'DOCUMENTER_KEY' to https://travis-ci.com/JuliaDocs/DocumenterTools.jl/settings (if you deploy using Travis CI) or https://github.com/JuliaDocs/DocumenterTools.jl/settings/secrets (if you deploy using GitHub Actions) with value:
+[ Info: Add a secure environment variable named 'DOCUMENTER_KEY' (to https://github.com/JuliaDocs/DocumenterTools.jl/settings/secrets if you deploy using GitHub Actions) with value:
 
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 ```
@@ -68,8 +70,8 @@ function genkeys(; user="\$USER", repo="\$REPO")
                 # Prompt user to add public key to github then remove the public key.
                 let url = "https://github.com/$user/$repo/settings/keys"
                     @info """
-                    add the public key below to $url with read and write access
-                    the title can be left empty as GitHub can infer it from the key comment
+                    Add the key below as a new 'Deploy key' on GitHub ($url) with read and write access.
+                    The 'Title' field can be left empty as GitHub can infer it from the key comment.
                     """
                     println("\n", read("$filename.pub", String))
                 end
@@ -77,11 +79,9 @@ function genkeys(; user="\$USER", repo="\$REPO")
                 # Base64 encode the private key and prompt user to add it to travis. The key is
                 # *not* encoded for the sake of security, but instead to make it easier to
                 # copy/paste it over to travis without having to worry about whitespace.
-                let travis_url = "https://travis-ci.com/$user/$repo/settings",
-                    github_url = "https://github.com/$user/$repo/settings/secrets"
-                    @info("add a secure environment variable named 'DOCUMENTER_KEY' to " *
-                        "$(travis_url) (if you deploy using Travis CI) or " *
-                        "$(github_url) (if you deploy using GitHub Actions) with value:")
+                let github_url = "https://github.com/$user/$repo/settings/secrets"
+                    @info("Add a secure environment variable named 'DOCUMENTER_KEY' " *
+                        "(to $(github_url) if you deploy using GitHub Actions) with value:")
                     println("\n", base64encode(read(filename, String)), "\n")
                 end
             catch e
