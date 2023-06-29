@@ -47,7 +47,7 @@ function compile(src, dst=nothing)
     end
     # Create the directory for destination file if it doesn't exist
     isdir(dirname(dst)) || mkpath(dirname(dst))
-    Sass.compile_file(src, dst; include_path=HTMLWriter.ASSETS_SASS)
+    Sass.compile_file(src, dst; include_path=HTMLWriter.ASSETS_SASS, output_style=Sass.compressed)
 end
 
 """
