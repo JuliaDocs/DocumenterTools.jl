@@ -11,8 +11,6 @@ mktempdir() do TMP
     # The following is sensitive to how Gumbo.jl writes HTML, but let's hope that doesn't change often:
     @test replace(output, "\r\n" => "\n") == replace(read(joinpath(@__DIR__, "fixtures", "index_after.html"), String), "\r\n" => "\n")
 
-    rm(index_changed)
-
 
     transient_path = joinpath(TMP, "fixtures", "transient")
     cp(joinpath(TMP, "fixtures", "pre"), transient_path, force=true)
@@ -26,5 +24,5 @@ mktempdir() do TMP
         end
     end
 
-    rm(transient_path, recursive=true)
+    rm(joinpath(TMP, "fixtures"), recursive=true)
 end
