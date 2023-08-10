@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Version [v0.1.20] -- 2024-09-24
+
+### Changed
+
+* Allow OpenSSH_jll 9 as dependency. ([#74], [#91])
+
 ## Version [v0.1.19] -- 2024-01-28
 
 ### Changed
