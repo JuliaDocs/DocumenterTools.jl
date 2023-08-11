@@ -106,6 +106,7 @@ Maintenance release declaring compatibility with Documenter 0.25. ([#39][github-
 [github-64]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/64
 [github-65]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/65
 [github-71]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/71
+[github-74]: https://github.com/JuliaDocs/DocumenterTools.jl/pull/74
 
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
