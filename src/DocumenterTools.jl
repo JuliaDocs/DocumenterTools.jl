@@ -175,6 +175,7 @@ function package_devpath(pkg::Module)
 end
 
 include("walkdocs.jl")
+include("redirects.jl")
 include("genkeys.jl")
 include("Generator.jl")
 include("Themes.jl")
