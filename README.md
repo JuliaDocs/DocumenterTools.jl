@@ -2,7 +2,7 @@
 
 | **Documentation**                       | **Build Status**                |
 |:---------------------------------------:|:-------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] | [![][codecov-img]][codecov-url] |
+| [![][docs-stable-img]][docs-stable-url] | [![][GHA-img]][GHA-url] [![][codecov-img]][codecov-url] [![PkgEval][pkgeval-img]][pkgeval-url] |
 
 This package contains utilities for setting up documentation generation with
 [Documenter.jl][documenter].
@@ -23,3 +23,9 @@ pkg> add DocumenterTools
 
 [codecov-img]: https://codecov.io/gh/JuliaDocs/DocumenterTools.jl/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/JuliaDocs/DocumenterTools.jl
+
+[pkgeval-img]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/D/DocumenterTools.svg
+[pkgeval-url]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/D/DocumenterTools.html
+
+[GHA-img]: https://github.com/JuliaDocs/DocumenterTools.jl/actions/workflows/CI.yml/badge.svg
+[GHA-url]: https://github.com/JuliaDocs/DocumenterTools.jl/actions/workflows/CI.yml
