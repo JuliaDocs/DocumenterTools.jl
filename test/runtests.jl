@@ -19,6 +19,10 @@ import Documenter
         DocumenterTools.genkeys(DocumenterMarkdown)
     end
 
+    @testset "walkdocs" begin
+        include("walkdocs.jl")
+    end
+
     @testset "outdated warnings" begin
         include("outdated.jl")
     end

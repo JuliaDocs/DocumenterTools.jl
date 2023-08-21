@@ -16,12 +16,13 @@ mktempdir() do TMP
     cp(joinpath(TMP, "fixtures", "pre"), transient_path, force=true)
     OutdatedWarning.generate(transient_path)
 
-    for (root, _, files) in walkdir(transient_path)
-        for file in files
-            content = read(joinpath(root, file), String)
-            expected = read(joinpath(replace(root, "transient" => "post"), file), String)
-            @test replace(content, "\r\n" => "\n") == replace(expected, "\r\n" => "\n")
-        end
+    DocumenterTools.walkdocs(transient_path) do fileinfo
+        content = read(fileinfo.fullpath, String)
+        expected = read(
+            joinpath(replace(dirname(fileinfo.fullpath), "transient" => "post"), fileinfo.filename),
+            String
+        )
+        @test replace(content, "\r\n" => "\n") == replace(expected, "\r\n" => "\n")
     end
 
     rm(joinpath(TMP, "fixtures"), recursive=true)

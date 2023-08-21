@@ -174,6 +174,8 @@ function package_devpath(pkg::Module)
     return normpath(joinpath(path, "..", ".."))
 end
 
+include("walkdocs.jl")
+include("redirects.jl")
 include("genkeys.jl")
 include("Generator.jl")
 include("Themes.jl")
