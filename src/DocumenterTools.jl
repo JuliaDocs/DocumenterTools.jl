@@ -1,5 +1,7 @@
 module DocumenterTools
 
+import AbstractTrees
+import Gumbo
 using DocStringExtensions
 
 """
@@ -175,6 +177,7 @@ function package_devpath(pkg::Module)
 end
 
 include("walkdocs.jl")
+include("canonical_links.jl")
 include("genkeys.jl")
 include("Generator.jl")
 include("Themes.jl")
