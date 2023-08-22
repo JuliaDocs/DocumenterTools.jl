@@ -1,6 +1,7 @@
 export OutdatedWarning
 
 module OutdatedWarning
+import ..DocumenterTools
 using Gumbo, AbstractTrees, Documenter
 
 OLD_VERSION_CSS = replace("""
@@ -168,20 +169,18 @@ function generate(io::IO, root::String;force = false)
         end
 
         print(io, "Processing $(dir): ")
-        for (root, _, files) in walkdir(path)
-            for file in files
-                _, ext = splitext(file)
-                if ext == ".html"
-                    try
-                        did_change = add_old_docs_notice(joinpath(root, file), force)
-                        print(io, did_change ? "✓" : ".")
-                    catch err
-                        if err isa InterruptException
-                            rethrow()
-                        end
-                        @debug "Fatally failed to add a outdated warning" exception = (err, catch_backtrace())
-                        print(io, "!")
+        DocumenterTools.walkdocs(path) do fileinfo
+            _, ext = splitext(fileinfo.filename)
+            if ext == ".html"
+                try
+                    did_change = add_old_docs_notice(fileinfo.fullpath, force)
+                    print(io, did_change ? "✓" : ".")
+                catch err
+                    if err isa InterruptException
+                        rethrow()
                     end
+                    @debug "Fatally failed to add a outdated warning" exception = (err, catch_backtrace())
+                    print(io, "!")
                 end
             end
         end
