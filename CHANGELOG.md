@@ -1,6 +1,6 @@
 # DocumenterTools.jl changelog
 
-## Version `v0.1.17`
+## Version `v0.1.18`
 
 * Declare compatibility with Documenter 1.0. ([#80][github-80], [#81][github-81])
 
