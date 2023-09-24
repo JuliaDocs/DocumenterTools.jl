@@ -14,9 +14,9 @@ import Documenter
 
     @testset "genkeys-deved" begin
         using Pkg
-        Pkg.develop("DocumenterMarkdown")
-        using DocumenterMarkdown
-        DocumenterTools.genkeys(DocumenterMarkdown)
+        Pkg.develop("Example")
+        using Example
+        DocumenterTools.genkeys(Example)
     end
 
     @testset "outdated warnings" begin
