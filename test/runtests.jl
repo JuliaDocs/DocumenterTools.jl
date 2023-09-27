@@ -13,10 +13,11 @@ import Documenter
     end
 
     @testset "genkeys-deved" begin
-        using Pkg
-        Pkg.develop("Example")
-        using Example
-        DocumenterTools.genkeys(Example)
+        import Pkg
+        # It's unlikely that Revise will ever enter our dependency graph
+        Pkg.develop("Revise")
+        import Revise
+        DocumenterTools.genkeys(Revise)
     end
 
     @testset "outdated warnings" begin
