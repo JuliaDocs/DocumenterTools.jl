@@ -1,5 +1,9 @@
 # DocumenterTools.jl changelog
 
+## Version `v0.1.19`
+
+* Update the instructions about the GitHub interface `genkeys` prints. ([#84][github-84], [#85][github-85])
+
 ## Version `v0.1.18`
 
 * Declare compatibility with Documenter 1.0. ([#80][github-80], [#81][github-81])
