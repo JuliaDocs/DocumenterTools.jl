@@ -36,7 +36,7 @@ julia> DocumenterTools.genkeys()
 
 ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 Documenter
 
-[ Info: Add a secure environment variable named 'DOCUMENTER_KEY' (to https://github.com/\$USER/\$REPO/settings/secrets if you deploy using GitHub Actions) with value:
+[ Info: Add a secure 'Repository secret' named 'DOCUMENTER_KEY' (to https://github.com/\$USER/\$REPO/settings/secrets if you deploy using GitHub Actions) with value:
 
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 
@@ -47,7 +47,7 @@ julia> DocumenterTools.genkeys(user="JuliaDocs", repo="DocumenterTools.jl")
 
 ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 Documenter
 
-[ Info: Add a secure environment variable named 'DOCUMENTER_KEY' (to https://github.com/JuliaDocs/DocumenterTools.jl/settings/secrets if you deploy using GitHub Actions) with value:
+[ Info: Add a secure 'Repository secret' named 'DOCUMENTER_KEY' (to https://github.com/JuliaDocs/DocumenterTools.jl/settings/secrets if you deploy using GitHub Actions) with value:
 
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 ```
@@ -80,7 +80,7 @@ function genkeys(; user="\$USER", repo="\$REPO")
                 # *not* encoded for the sake of security, but instead to make it easier to
                 # copy/paste it over to travis without having to worry about whitespace.
                 let github_url = "https://github.com/$user/$repo/settings/secrets"
-                    @info("Add a secure environment variable named 'DOCUMENTER_KEY' " *
+                    @info("Add a secure 'Repository secret' named 'DOCUMENTER_KEY' " *
                         "(to $(github_url) if you deploy using GitHub Actions) with value:")
                     println("\n", base64encode(read(filename, String)), "\n")
                 end
@@ -132,7 +132,7 @@ julia> DocumenterTools.genkeys(DocumenterTools)
 
 ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk...jNmUiGEMKrr0aqQMZEL2BG7 username@hostname
 
-[ Info: add a secure environment variable named 'DOCUMENTER_KEY' to https://travis-ci.com/JuliaDocs/DocumenterTools.jl/settings (if you deploy using Travis CI) or https://github.com/JuliaDocs/DocumenterTools.jl/settings/secrets (if you deploy using GitHub Actions) with value:
+[ Info: add a secure 'Repository secret' named 'DOCUMENTER_KEY' to https://travis-ci.com/JuliaDocs/DocumenterTools.jl/settings (if you deploy using Travis CI) or https://github.com/JuliaDocs/DocumenterTools.jl/settings/secrets (if you deploy using GitHub Actions) with value:
 
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 ```
