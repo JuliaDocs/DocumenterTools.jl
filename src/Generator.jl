@@ -36,6 +36,14 @@ function make(pkgname; format = :html)
 
     sitename = format !== :markdown ? "\n    sitename = \"$(pkgname)\"," : ""
     """
+    if abspath(PROGRAM_FILE) == @__FILE__
+        # When running the `make.jl` file as a script, automatically activate the
+        # `docs` environment and dev-install the main package into that environment
+        import Pkg
+        Pkg.activate(@__DIR__)
+        Pkg.develop(path=joinpath(@__DIR__, ".."))
+        Pkg.instantiate()
+    end
     using Documenter$(fmtpkg)
     using $(pkgname)
 
