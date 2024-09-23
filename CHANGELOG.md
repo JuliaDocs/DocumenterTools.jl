@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 * Allow OpenSSH_jll 9 as dependency. ([#74], [#91])
+* [Git.jl](https://github.com/JuliaVersionControl/Git.jl) is now used (instead
+  of `git` from the system) for running git commands. ([#70], [#92])
 
 ## Version [v0.1.19] -- 2024-01-28
 
@@ -159,6 +161,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.1.17]: https://github.com/JuliaDocs/DocumenterTools.jl/releases/tag/v0.1.17
 [v0.1.18]: https://github.com/JuliaDocs/DocumenterTools.jl/releases/tag/v0.1.18
 [v0.1.19]: https://github.com/JuliaDocs/DocumenterTools.jl/releases/tag/v0.1.19
+[v0.1.20]: https://github.com/JuliaDocs/DocumenterTools.jl/releases/tag/v0.1.20
 [#21]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/21
 [#22]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/22
 [#27]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/27
@@ -182,6 +185,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#60]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/60
 [#64]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/64
 [#65]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/65
+[#70]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/70
 [#71]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/71
 [#74]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/74
 [#80]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/80
@@ -189,3 +193,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#84]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/84
 [#85]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/85
 [#91]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/91
+[#92]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/92

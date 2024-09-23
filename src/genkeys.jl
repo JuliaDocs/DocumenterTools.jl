@@ -12,6 +12,7 @@ end # module
 using Base64
 import LibGit2: GITHUB_REGEX
 using OpenSSH_jll: ssh_keygen
+using Git: git
 
 """
     DocumenterTools.genkeys(; user="\$USER", repo="\$REPO")
@@ -138,22 +139,13 @@ LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy
 ```
 """
 function genkeys(package::Module; remote="origin", io::IO=stdout)
-    # Error checking. Do the required programs exist?
-    if Sys.iswindows()
-        success(`where where`)      || error("'where' not found.")
-        success(`where git`)        || error("'git' not found.")
-    else
-        success(`which which`)      || error("'which' not found.")
-        success(`which git`)        || error("'git' not found.")
-    end
-
     path = package_devpath(package)
 
     # Are we in a git repo?
     user, repo = cd(path) do
-        success(`git status`) || error("Failed to run `git status` in $(path). 'DocumenterTools.genkeys' only works with Git repositories.")
+        success(`$(git()) status`) || error("Failed to run `git status` in $(path). 'DocumenterTools.genkeys' only works with Git repositories.")
 
-        let r = readchomp(`git config --get remote.$remote.url`)
+        let r = readchomp(`$(git()) config --get remote.$remote.url`)
             m = match(GITHUB_REGEX, r)
             m === nothing && error("no remote repo named '$remote' found.")
             m[2], m[3]
