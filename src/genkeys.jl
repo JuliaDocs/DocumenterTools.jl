@@ -62,7 +62,7 @@ function genkeys(; user="\$USER", repo="\$REPO")
     # Generate the ssh key pair.
     mktempdir() do path
         cd(path) do
-            cmd = `$(sshkeygen) -N "" -C Documenter -m PEM -f $filename`
+            cmd = `$(sshkeygen) -t rsa -N "" -C Documenter -m PEM -f $filename`
             out, err = IOBuffer(), IOBuffer()
             try
                 run(pipeline(cmd, stdout=out, stderr=err))
