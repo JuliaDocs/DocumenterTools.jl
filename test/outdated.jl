@@ -14,7 +14,7 @@ mktempdir() do TMP
 
     transient_path = joinpath(TMP, "fixtures", "transient")
     cp(joinpath(TMP, "fixtures", "pre"), transient_path, force=true)
-    OutdatedWarning.generate(transient_path)
+    @test_logs (:warn, r"Adding an `OutdatedWarning`") OutdatedWarning.generate(transient_path)
 
     for (root, _, files) in walkdir(transient_path)
         for file in files

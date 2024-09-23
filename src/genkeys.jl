@@ -52,7 +52,7 @@ ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 ```
 """
-function genkeys(; user="\$USER", repo="\$REPO")
+function genkeys(; user="\$USER", repo="\$REPO", io::IO=stdout)
     sshkeygen = ssh_keygen()
 
     filename  = "documenter-private-key"
@@ -73,7 +73,7 @@ function genkeys(; user="\$USER", repo="\$REPO")
                     Add the key below as a new 'Deploy key' on GitHub ($url) with read and write access.
                     The 'Title' field can be left empty as GitHub can infer it from the key comment.
                     """
-                    println("\n", read("$filename.pub", String))
+                    println(io, "\n", read("$filename.pub", String))
                 end
 
                 # Base64 encode the private key and prompt user to add it to travis. The key is
@@ -82,7 +82,7 @@ function genkeys(; user="\$USER", repo="\$REPO")
                 let github_url = "https://github.com/$user/$repo/settings/secrets"
                     @info("Add a secure 'Repository secret' named 'DOCUMENTER_KEY' " *
                         "(to $(github_url) if you deploy using GitHub Actions) with value:")
-                    println("\n", base64encode(read(filename, String)), "\n")
+                    println(io, "\n", base64encode(read(filename, String)), "\n")
                 end
             catch e
                 @error """
@@ -137,7 +137,7 @@ ssh-rsa AAAAB3NzaC2yc2EAAAaDAQABAAABAQDrNsUZYBWJtXYUk21wxZbX3KxcH8EqzR3ZdTna0Wgk
 LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNnpiRkdXQVZpYlIy...QkVBRWFjY3BxaW9uNjFLaVdOcDU5T2YrUkdmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 ```
 """
-function genkeys(package::Module; remote="origin")
+function genkeys(package::Module; remote="origin", io::IO=stdout)
     # Error checking. Do the required programs exist?
     if Sys.iswindows()
         success(`where where`)      || error("'where' not found.")
@@ -161,5 +161,5 @@ function genkeys(package::Module; remote="origin")
     end
 
     # Generate the ssh key pair.
-    genkeys(; user=user, repo=repo)
+    genkeys(; user=user, repo=repo, io=io)
 end
