@@ -20,14 +20,14 @@ using Example
         Pkg.generate("Pkg1")
         Pkg.develop(PackageSpec(path = "Pkg1"))
         @eval using Pkg1
-        DocumenterTools.generate(Pkg1; format = :html)
+        @test_logs (:info, r"deploying documentation to") (:info, r"Generating \.gitignore") (:info, r"Generating make\.jl") (:info, r"Generating Project\.toml") (:info, r"Generating src/index\.md") DocumenterTools.generate(Pkg1; format = :html)
         check_docdir(joinpath("Pkg1", "docs"); format = :html)
         @test_throws ArgumentError DocumenterTools.generate(Pkg1)
         Pkg.rm(PackageSpec("Pkg1"))
 
         # generate from path
         Pkg.generate("Pkg2")
-        DocumenterTools.generate(joinpath("Pkg2", "docs"); format = :markdown)
+        @test_logs (:info, r"name of package automatically determined to be") (:info, r"deploying documentation to") (:info, r"Generating \.gitignore") (:info, r"Generating make\.jl") (:info, r"Generating mkdocs\.yml") (:info, r"Generating Project\.toml") (:info, r"Generating src/index\.md") DocumenterTools.generate(joinpath("Pkg2", "docs"); format = :markdown)
         check_docdir(joinpath("Pkg2", "docs"); format = :markdown)
         @test_throws ArgumentError DocumenterTools.generate(joinpath("Pkg2", "docs"))
 
@@ -39,7 +39,7 @@ using Example
         write(joinpath("Pkg3", "src", "Pkg3.jl"), "module Pkg3\nend\n")
         write(joinpath("Pkg3", "src", "Pkg4.jl"), "module Pkg4\nend\n")
         @test_throws ArgumentError DocumenterTools.generate(joinpath("Pkg3", "docs"))
-        DocumenterTools.generate(joinpath("Pkg3", "docs"); name = "Pkg3", format = :pdf)
+        @test_logs (:info, r"deploying documentation to") (:info, r"Generating \.gitignore") (:info, r"Generating make\.jl") (:info, r"Generating Project\.toml") (:info, r"Generating src/index\.md") DocumenterTools.generate(joinpath("Pkg3", "docs"); name = "Pkg3", format = :pdf)
         check_docdir(joinpath("Pkg3", "docs"), format = :pdf)
 
         # throw for a package that is installed and not deved

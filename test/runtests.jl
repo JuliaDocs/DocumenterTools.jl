@@ -9,7 +9,7 @@ import Documenter
 
     @testset "genkeys-added" begin
         using Example
-        DocumenterTools.genkeys(user="JuliaLang", repo="git@github.com:JuliaLang/Example.jl.git")
+        @test_logs (:info, r"Add the key below") (:info, r"Add a secure 'Repository secret' named 'DOCUMENTER_KEY'") DocumenterTools.genkeys(user="JuliaLang", repo="git@github.com:JuliaLang/Example.jl.git", io=devnull)
     end
 
     @testset "genkeys-deved" begin
@@ -17,12 +17,12 @@ import Documenter
         # It's unlikely that Revise will ever enter our dependency graph
         Pkg.develop("Revise")
         import Revise
-        DocumenterTools.genkeys(Revise)
+        @test_logs (:info, r"Add the key below") (:info, r"Add a secure 'Repository secret' named 'DOCUMENTER_KEY'") DocumenterTools.genkeys(Revise; io=devnull)
     end
 
     @testset "outdated warnings" begin
         include("outdated.jl")
     end
 
-    Documenter.doctest(nothing, [DocumenterTools])
+    @test_logs (:info, r"SetupBuildDirectory") (:info, r"Doctest") (:info, r"Skipped ExpandTemplates step") (:info, r"Skipped CrossReferences step") (:info, r"Skipped CheckDocument step") (:info, r"Skipped Populate step") (:info, r"Skipped RenderDocument step") Documenter.doctest(nothing, [DocumenterTools])
 end
