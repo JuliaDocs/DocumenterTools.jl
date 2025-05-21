@@ -4,6 +4,7 @@ Provides the functions related to generating documentation stubs.
 module Generator
 
 using DocStringExtensions
+using UUIDs: uuid4
 
 """
 $(SIGNATURES)
@@ -41,7 +42,12 @@ function make(pkgname; format = :html)
 
     makedocs($(sitename)
         format = $(fmtstr),
-        modules = [$(pkgname)]
+        modules = [$(pkgname)],
+        # The generated stub will not be in a Git repo usually,
+        # so we want to disable the remote URL generation (which otherwise
+        # tries to automatically determine the remote repo by inspecting
+        # the Git repo's remotes)
+        remotes=nothing
     )
 
     # Documenter can also automatically deploy documentation to gh-pages.
@@ -140,6 +146,79 @@ function index(pkgname)
 
     Documentation for $(pkgname).jl
     """
+end
+
+"""
+
+"""
+function genpackage(name::AbstractString; destination::AbstractString=pwd(), force::Bool=false)
+    package_root = joinpath(destination, name)
+    package_uuid = string(uuid4())
+
+    mktempdir() do tmp_root
+        # Generate a basic Julia Project.toml for this package
+        open(joinpath(tmp_root, "Project.toml"), "w") do io
+            write(io, """
+            name = "$(name)"
+            uuid = "$(package_uuid)"
+            version = "0.0.0"
+            """)
+        end
+
+        open(joinpath(tmp_root, "Makefile"), "w") do io
+            write(io, """
+            .PHONY: docs
+            docs: docs/Manifest.toml
+            \tjulia --project=docs docs/make.jl
+
+            docs/Manifest.toml: docs/Project.toml Project.toml
+            \tjulia --project=docs -e 'using Pkg; Pkg.instantiate()'
+            """)
+        end
+
+        let src = joinpath(tmp_root, "src")
+            mkpath(src)
+            open(joinpath(src, "$(name).jl"); write=true) do io
+                write(io, "module $(name)\n\nend")
+            end
+        end
+
+        let docs = joinpath(tmp_root, "docs")
+            mkpath(docs)
+            open(joinpath(docs, "Project.toml"); write=true) do io
+                write(io, """
+                [deps]
+                Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+                $(name) = "$(package_uuid)"
+
+                [sources]
+                $(name) = { path = ".." }
+                """)
+            end
+            open(joinpath(docs, "make.jl"); write=true) do io
+                write(io, make(name))
+            end
+            let docs_src = joinpath(docs, "src")
+                mkpath(docs_src)
+                open(joinpath(docs_src, "index.md"); write=true) do io
+                    write(io, index(name))
+                end
+            end
+        end
+
+        if ispath(package_root)
+            if force && isdir(package_root)
+                @warn "Removing existing directory" package_root
+                rm(package_root; recursive=true)
+            else
+                error("Something exists at: $(package_root)")
+            end
+        end
+        @info "Generating $(name)" package_root
+        mv(tmp_root, package_root)
+    end
+
+    return nothing
 end
 
 end
