@@ -19,10 +19,11 @@ using Example
         # generate from module argument
         Pkg.generate("Pkg1")
         Pkg.develop(PackageSpec(path = "Pkg1"))
-        @eval using Pkg1
-        @test_logs (:info, r"deploying documentation to") (:info, r"Generating \.gitignore") (:info, r"Generating make\.jl") (:info, r"Generating Project\.toml") (:info, r"Generating src/index\.md") DocumenterTools.generate(Pkg1; format = :html)
+        mod = Module()
+        @eval mod using Pkg1, DocumenterTools
+        @test_logs (:info, r"deploying documentation to") (:info, r"Generating \.gitignore") (:info, r"Generating make\.jl") (:info, r"Generating Project\.toml") (:info, r"Generating src/index\.md") @eval mod DocumenterTools.generate(Pkg1; format = :html)
         check_docdir(joinpath("Pkg1", "docs"); format = :html)
-        @test_throws ArgumentError DocumenterTools.generate(Pkg1)
+        @test_throws ArgumentError @eval mod DocumenterTools.generate(Pkg1)
         Pkg.rm(PackageSpec("Pkg1"))
 
         # generate from path
