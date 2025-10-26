@@ -13,6 +13,7 @@ Gumbo = "708ec375-b3d6-5a57-a7ce-8257bf98657a"
 LibGit2 = "76f85450-5226-5b5a-8eaa-529ad045b433"
 OpenSSH_jll = "9bd350c2-7e96-507f-8002-3f2e150b4e1b"
 Sass = "322a6be2-4ae8-5d68-aaf1-3e960788d1d9"
+UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 
 [compat]
 AbstractTrees = "0.3, 0.4"
@@ -22,6 +23,7 @@ Git = "1"
 Gumbo = "0.7, 0.8"
 OpenSSH_jll = "8, 9.9.1"
 Sass = "0.1, 0.2"
+UUIDs = "1"
 julia = "1.6"
 
 [extras]
