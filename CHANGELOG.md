@@ -201,3 +201,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#85]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/85
 [#91]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/91
 [#92]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/92
+[#97]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/97
+[#99]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/99
