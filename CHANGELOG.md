@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Other
+
+* The package now requires at least Julia 1.10. ([#99])
+* The package now supports OpenSSH_jll v10. ([#97], [#99])
+
 ## Version [v0.1.20] -- 2024-09-24
 
 ### Changed
@@ -194,3 +201,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#85]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/85
 [#91]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/91
 [#92]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/92
+[#97]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/97
+[#99]: https://github.com/JuliaDocs/DocumenterTools.jl/issues/99
