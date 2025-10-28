@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Other
 
-* The packages now requires at least Julia 1.10. ([#99])
+* The package now requires at least Julia 1.10. ([#99])
+* The package now supports OpenSSH_jll v10. ([#97], [#99])
 
 ## Version [v0.1.20] -- 2024-09-24
 
